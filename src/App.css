@@ -7,3 +7,10 @@
   --color-blue200: hsl(232, 68%, 89%);
   --color-blue50: hsl(240, 78%, 98%);
 }
+
+body {
+  background-color: var(--color-blue50);
+  background-image: url("../src/assets/images/bg-top.svg");
+  background-repeat: no-repeat;
+  background-position: 12.5rem 0rem;
+}
