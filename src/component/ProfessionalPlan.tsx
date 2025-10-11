@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { typography } from "../styles/typography";
+import { convertPxToEm } from "../util/convertPxToEm";
 import { convertPxToRem } from "../util/convertPxToRem";
 
 const ProfessionalPlan = styled.div`
@@ -59,6 +60,12 @@ const PlanStorageContainer = styled.div`
 const PlanStorageDivider = styled.hr`
   border: ${convertPxToRem(1)} solid var(--color-gray650);
   width: ${convertPxToRem(269)};
+
+  @media (min-width: ${convertPxToEm(768)}) and (max-width: ${convertPxToEm(
+      1439
+    )}) {
+    width: ${convertPxToRem(500)};
+  }
 `;
 
 const PlanStorageText = styled.p`
