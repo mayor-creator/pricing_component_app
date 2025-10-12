@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import styled from "styled-components";
 import { typography } from "../styles/typography";
+import { convertPxToEm } from "../util/convertPxToEm";
 import { convertPxToRem } from "../util/convertPxToRem";
 import { BasicPlanComponent } from "./BasicPlan";
 import { MasterPlanComponent } from "./MasterPlan";
@@ -8,6 +9,14 @@ import { ProfessionalPlanComponent } from "./ProfessionalPlan";
 
 const PricingContainer = styled.div`
   padding: ${convertPxToRem(71)} ${convertPxToRem(24)};
+
+  @media (min-width: ${convertPxToEm(1440)}) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: ${convertPxToRem(71)} ${convertPxToRem(80)};
+  }
 `;
 
 const PricingHeader = styled.header`
@@ -90,6 +99,12 @@ const PlansContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${convertPxToRem(32)};
+
+  @media (min-width: ${convertPxToEm(1440)}) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
 `;
 
 export const Pricing = () => {
