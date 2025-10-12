@@ -91,6 +91,16 @@ const PlanStorageButton = styled.button`
   font-weight: ${typography.textPresetSix.fontWeight};
   line-height: ${typography.textPresetSix.lineHeight};
   letter-spacing: ${typography.textPresetSix.letterSpacing};
+
+  &:hover {
+    background: linear-gradient(
+      90deg,
+      hsla(236, 72%, 79%, 1) 0%,
+      hsla(237, 63%, 64%, 1) 100%
+    );
+    border: ${convertPxToRem(1)} solid var(--color-white);
+    color: var(--color-white);
+  }
 `;
 
 export const ProfessionalPlanComponent = ({ pricing }: { pricing: string }) => {

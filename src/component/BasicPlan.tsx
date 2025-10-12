@@ -76,7 +76,6 @@ const PlanStorageText = styled.p`
 const PlanStorageButton = styled.button`
   color: var(--color-white);
   border: none;
-  background-color: hsla(236, 72%, 79%, 1);
   background: linear-gradient(
     90deg,
     hsla(236, 72%, 79%, 1) 0%,
@@ -91,6 +90,13 @@ const PlanStorageButton = styled.button`
   font-weight: ${typography.textPresetSix.fontWeight};
   line-height: ${typography.textPresetSix.lineHeight};
   letter-spacing: ${typography.textPresetSix.letterSpacing};
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: var(--color-white);
+    border: ${convertPxToRem(1)} solid var(--color-blue500);
+    color: var(--color-blue500);
+  }
 `;
 
 export const BasicPlanComponent = ({ pricing }: { pricing: string }) => {

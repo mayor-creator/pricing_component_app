@@ -91,6 +91,12 @@ const PlanStorageButton = styled.button`
   font-weight: ${typography.textPresetSix.fontWeight};
   line-height: ${typography.textPresetSix.lineHeight};
   letter-spacing: ${typography.textPresetSix.letterSpacing};
+
+  &:hover {
+    background: var(--color-white);
+    border: ${convertPxToRem(1)} solid var(--color-blue500);
+    color: var(--color-blue500);
+  }
 `;
 
 export const MasterPlanComponent = ({ pricing }: { pricing: string }) => {
