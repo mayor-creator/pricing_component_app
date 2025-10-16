@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { typography } from "../styles/typography";
 import { convertPxToEm } from "../util/convertPxToEm";
 import { convertPxToRem } from "../util/convertPxToRem";
-import { BasicPlanComponent } from "./BasicPlan";
-import { MasterPlanComponent } from "./MasterPlan";
-import { ProfessionalPlanComponent } from "./ProfessionalPlan";
+import { PlanCard } from "./PlanCard";
 
 const PricingContainer = styled.div`
   padding: ${convertPxToRem(71)} ${convertPxToRem(24)};
@@ -107,15 +105,63 @@ const PlansContainer = styled.div`
   }
 `;
 
+interface PlanData {
+  title: string;
+  pricing: string;
+  storage: string;
+  users: string;
+  sendLimit: string;
+  isProfessional?: boolean;
+}
+
 export const Pricing = () => {
-  const [pricing, setPricing] = useState("Monthly");
   const [isChecked, setIsChecked] = useState(true);
   const id = useId();
+
+  const basePlans = [
+    {
+      title: "Basic",
+      monthlyPrice: "19.99",
+      annualPrice: "199.99",
+      storage: "500 GB Storage",
+      users: "2 Users Allowed",
+      sendLimit: "Send up to 3 GB",
+      isProfessional: false,
+    },
+    {
+      title: "Professional",
+      monthlyPrice: "24.99",
+      annualPrice: "249.99",
+      storage: "1 TB Storage",
+      users: "5 Users Allowed",
+      sendLimit: "Send up to 10 GB",
+      isProfessional: true,
+    },
+    {
+      title: "Master",
+      monthlyPrice: "39.99",
+      annualPrice: "349.99",
+      storage: "2 TB Storage",
+      users: "10 Users Allowed",
+      sendLimit: "Send up to 20 GB",
+      isProfessional: false,
+    },
+  ];
+
+  const planData: PlanData[] = basePlans.map((plan) => ({
+    title: plan.title,
+    storage: plan.storage,
+    users: plan.users,
+    sendLimit: plan.sendLimit,
+    isProfessional: plan.isProfessional,
+    pricing: isChecked ? plan.monthlyPrice : plan.annualPrice,
+  }));
+
+  const [BasicPlanData, ProfessionalPlanData, MasterPlanData] = planData;
 
   const priceToggleSwitch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checked = event.target.checked;
     setIsChecked(checked);
-    setPricing(checked ? "Monthly" : "Annually");
   };
 
   return (
@@ -138,15 +184,9 @@ export const Pricing = () => {
       </PricingHeader>
 
       <PlansContainer>
-        <BasicPlanComponent
-          pricing={pricing === "Monthly" ? "19.99" : "199.99"}
-        />
-        <ProfessionalPlanComponent
-          pricing={pricing === "Monthly" ? "24.99" : "249.99"}
-        />
-        <MasterPlanComponent
-          pricing={pricing === "Monthly" ? "39.99" : "349.99"}
-        />
+        <PlanCard {...BasicPlanData} />
+        <PlanCard {...ProfessionalPlanData} />
+        <PlanCard {...MasterPlanData} />
       </PlansContainer>
     </PricingContainer>
   );
